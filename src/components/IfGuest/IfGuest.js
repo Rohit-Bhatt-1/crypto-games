@@ -2,7 +2,7 @@ import React from "react";
 import { accessToken } from "../../utils/constants";
 
 function IfGuest({ children }) {
-  if (sessionStorage.getItem(accessToken) === null) return children;
+  if (localStorage.getItem(accessToken) === null) return children;
   return <></>;
 }
 

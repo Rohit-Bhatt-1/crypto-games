@@ -1,27 +1,31 @@
-import jwtDecode from "jwt-decode";
 import React, { useState } from "react";
 import { useHistory } from "react-router";
 import { Nav, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import { googleLogin } from "../../firebase/auth/googleAuth";
-import { accessToken } from "../../utils/constants";
 import IfLoggedIn from "../IfLoggedIn/IfLoggedIn";
 import IfGuest from "../IfGuest/IfGuest";
+import { useDispatch } from "react-redux";
 import "./Header.css";
+import authActionCreator from "../../redux/actionCreator/authActionCreator/authActionCreator";
 
 export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const dispatch = useDispatch();
   const history = useHistory();
+
   const login = () => {
-    if (!isLoggedIn) googleLogin();
-    setIsLoggedIn(true);
-    history.push("/");
+    if (!isLoggedIn) {
+      (async () => {
+        dispatch(await authActionCreator());
+        setIsLoggedIn(true);
+        history.push("/test");
+      })();
+    }
   };
 
   const logout = () => {
+    localStorage.clear();
     setIsLoggedIn(false);
-    sessionStorage.clear();
-    history.push("/test");
   };
 
   return (

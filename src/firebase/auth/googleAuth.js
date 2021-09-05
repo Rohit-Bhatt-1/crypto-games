@@ -21,7 +21,6 @@ export const googleLogin = () => {
     .then((result) => {
       const user = result.user;
       sessionStorage.setItem(accessToken, user.accessToken);
-      console.log("userToken", user.accessToken);
     })
     .catch((error) => {
       // Handle Errors here.
