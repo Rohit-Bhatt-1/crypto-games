@@ -1,92 +1,59 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Logo } from '../../utils/images';
+import React, { useState } from "react";
+import { useHistory } from "react-router";
+import { Nav, Navbar } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+import IfLoggedIn from "../IfLoggedIn/IfLoggedIn";
+import IfGuest from "../IfGuest/IfGuest";
+import { useDispatch } from "react-redux";
+import "./Header.css";
+import authActionCreator from "../../redux/actionCreator/authActionCreator/authActionCreator";
 
 export default function Header() {
-    const [isNavCollapsed, setIsNavCollapsed] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
+  const login = () => {
+    if (!isLoggedIn) {
+      (async () => {
+        dispatch(await authActionCreator());
+        setIsLoggedIn(true);
+        history.push("/test");
+      })();
+    }
+  };
+
+  const logout = () => {
+    localStorage.clear();
+    setIsLoggedIn(false);
+  };
+
   return (
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div className="container-fluid">
-        <Link class="navbar-brand ">
-          <img
-            src = {Logo}
-            alt="B&B"
-            width="36"
-            height="36"
-            className="vertical-align-middle me-1"
-          />
-          <span className="">Discounter</span>
-        </Link>
-        <button
-          class="custom-toggler navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarsExample09"
-          aria-controls="navbarsExample09"
-          aria-expanded={!isNavCollapsed ? true : false}
-          aria-label="Toggle navigation"
-          onClick={handleNavCollapse}
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div
-          class={`${isNavCollapsed ? "collapse" : ""} navbar-collapse`}
-          id="navbarsExample09"
-        >
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">
-                Dashboard
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                Features
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                Pricing
-              </a>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdownMenuLink"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Dropdown link
-              </a>
-              <ul
-                class="dropdown-menu"
-                aria-labelledby="navbarDropdownMenuLink"
-              >
-                <li>
-                  <a class="dropdown-item" href="#">
-                    Action
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    Another action
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    Something else here
-                  </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <NavLink to="/" className="navbar-brand hover-overlay ps-2">
+        Bear & Bull
+      </NavLink>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav className="me-auto"></Nav>
+        <Nav>
+          <IfLoggedIn>
+            <Nav.Link className="nav-link" onClick={logout}>
+              Logout
+            </Nav.Link>
+          </IfLoggedIn>
+          <IfGuest>
+            <Nav.Link className="nav-link" onClick={login}>
+              Login with{" "}
+              <img
+                src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-icon-png-transparent-background-osteopathy-16.png"
+                alt="Google"
+                className="logo"
+              />
+            </Nav.Link>
+          </IfGuest>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
   );
 }
