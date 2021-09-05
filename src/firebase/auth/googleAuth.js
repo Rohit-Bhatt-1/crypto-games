@@ -1,5 +1,6 @@
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import firebase from "firebase/compat/app";
+import { accessToken } from "../../utils/constants";
 
 firebase.initializeApp({
   apiKey: process.env.REACT_APP_API_KEY,
@@ -14,15 +15,13 @@ firebase.initializeApp({
 const provider = new GoogleAuthProvider();
 provider.addScope("https://www.googleapis.com/auth/contacts.readonly");
 const auth = getAuth();
-export const login = () => {
+
+export const googleLogin = () => {
   signInWithPopup(auth, provider)
     .then((result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      console.log("token", token);
       const user = result.user;
-      console.log("user", user);
+      sessionStorage.setItem(accessToken, user.accessToken);
+      console.log("userToken", user.accessToken);
     })
     .catch((error) => {
       // Handle Errors here.
@@ -32,6 +31,7 @@ export const login = () => {
       const email = error.email;
       // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error);
+      console.log("credentialError", credential);
       console.log("errorCode", errorCode);
       console.log("errorMessage", errorMessage);
       console.log("emailError", email);

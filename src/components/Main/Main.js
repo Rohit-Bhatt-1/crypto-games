@@ -20,6 +20,9 @@ export default function Main() {
       <Provider store={store}>
         <Header />
         <Switch>
+          <Route path="/test">
+            <h1>test</h1>
+          </Route>
           <Route path="/">
             <Home />
           </Route>
