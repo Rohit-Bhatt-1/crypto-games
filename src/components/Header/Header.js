@@ -1,6 +1,8 @@
 import React from "react";
-import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
-import { Link, NavLink } from "react-router-dom";
+import { Nav, Navbar } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+import { login } from "../../firebase/auth/googleAuth";
+import "./Header.css";
 
 export default function Header() {
   return (
@@ -24,12 +26,14 @@ export default function Header() {
           </NavDropdown> */}
         </Nav>
         <Nav>
-          <NavLink to="/login" className="nav-link">
-            Login
-          </NavLink>
-          <NavLink to="/signup" className="nav-link">
-            Sign Up
-          </NavLink>
+          <Nav.Link className="nav-link" onClick={login}>
+            Login with{" "}
+            <img
+              src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-icon-png-transparent-background-osteopathy-16.png"
+              alt="Google"
+              className="logo"
+            />
+          </Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
