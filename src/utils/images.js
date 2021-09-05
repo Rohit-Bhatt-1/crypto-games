@@ -1,0 +1,1 @@
+export const Logo = "public/assets/images/Logo.png";
