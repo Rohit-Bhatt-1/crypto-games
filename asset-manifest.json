@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/crypto-games/static/css/main.a8761530.chunk.css",
-    "main.js": "/crypto-games/static/js/main.72777e38.chunk.js",
-    "main.js.map": "/crypto-games/static/js/main.72777e38.chunk.js.map",
+    "main.js": "/crypto-games/static/js/main.d9ebfc3a.chunk.js",
+    "main.js.map": "/crypto-games/static/js/main.d9ebfc3a.chunk.js.map",
     "runtime-main.js": "/crypto-games/static/js/runtime-main.342dd647.js",
     "runtime-main.js.map": "/crypto-games/static/js/runtime-main.342dd647.js.map",
     "static/js/2.bf7ca362.chunk.js": "/crypto-games/static/js/2.bf7ca362.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.342dd647.js",
     "static/js/2.bf7ca362.chunk.js",
     "static/css/main.a8761530.chunk.css",
-    "static/js/main.72777e38.chunk.js"
+    "static/js/main.d9ebfc3a.chunk.js"
   ]
 }
