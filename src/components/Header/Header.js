@@ -29,7 +29,7 @@ export default function Header() {
   };
 
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
       <NavLink to="/" className="navbar-brand hover-overlay ps-2">
         Bear & Bull
       </NavLink>
