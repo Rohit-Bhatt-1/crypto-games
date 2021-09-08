@@ -50,5 +50,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/Rohit-Bhatt-1/crypto-games.git",
+  "author": "YOG3SHWAR <yogeshwar.chaturvedi@publicissapient.com>",
+  "license": "MIT"
 }
