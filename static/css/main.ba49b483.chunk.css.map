@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack://src/components/Header/Header.css"],"names":[],"mappings":"AAAA,MACI,UAAW,CACX,WAAY,CACZ,cAAe,CACf,kBAAmB,CACnB,gBAAiB,CACjB,kBACJ","file":"main.ba49b483.chunk.css","sourcesContent":[".logo { \n    width: 16px; \n    height: 16px; \n    display: inline;\n    align-items: center;\n    padding-left: 2px;\n    padding-bottom: 2px;\n}"]}
