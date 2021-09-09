@@ -1,8 +1,6 @@
-import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { FaArrowCircleUp } from "react-icons/fa";
 import { Button } from "./Styles";
-import { up } from "./up.png";
 
 const ScrollButton = () => {
   const [visible, setVisible] = useState(false);
