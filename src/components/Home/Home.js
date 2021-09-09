@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import getCoinsActionCreator from "../../redux/actionCreator/getCoinsActionCreator/getCoinsActionCreator";
 import CoinList from "../CoinList/CoinList";
 import Loading from "../Loading/Loading";
+import ScrollButton from "../ScrollButton/ScrollButton";
 
 function Home() {
   const coins = useSelector((store) => store.getCoinsReducer);
@@ -39,7 +40,12 @@ function Home() {
       </tr>
     ));
   if (loading) return <Loading />;
-  return <CoinList list={display} />;
+  return (
+    <>
+      <CoinList list={display} />
+      <ScrollButton />
+    </>
+  );
 }
 
 export default Home;
