@@ -8,6 +8,7 @@ import Header from "../Header/Header";
 import { Provider } from "react-redux";
 import Home from "../Home/Home";
 import { Route, Switch } from "react-router";
+import Profile from "../Profile/Profile";
 
 export default function Main() {
   const middlewares = [thunk];
@@ -20,6 +21,9 @@ export default function Main() {
       <Provider store={store}>
         <Header />
         <Switch>
+        <Route path="/profile">
+          <Profile />
+        </Route>
           <Route path="/test">
             <h1>test</h1>
           </Route>

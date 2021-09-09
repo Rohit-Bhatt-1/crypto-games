@@ -18,6 +18,7 @@ const auth = getAuth();
 
 const authActionCreator = async () => {
   const data = await signInWithPopup(auth, provider);
+  console.log(data);
   const user = data.user;
   localStorage.setItem(accessToken, user.accessToken);
   return { type: "HELLO" };

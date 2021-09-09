@@ -18,7 +18,7 @@ export default function Header() {
       (async () => {
         dispatch(await authActionCreator());
         setIsLoggedIn(true);
-        history.push("/test");
+        // history.push("/test");
       })();
     }
   };
