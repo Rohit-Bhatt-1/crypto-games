@@ -13,7 +13,7 @@ function Home() {
   useEffect(() => {
     (async () => {
       setloading(true);
-      dispatch(await getCoinsActionCreator("inr", 10000, 1));
+      dispatch(await getCoinsActionCreator());
       setloading(false);
     })();
   }, [dispatch]);
