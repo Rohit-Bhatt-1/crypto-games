@@ -8,13 +8,13 @@ function Home() {
   const coins = useSelector((store) => store.getCoinsReducer);
   console.log("coins", coins);
   const dispatch = useDispatch();
-  const [loading, setloading] = useState(true);
+  const [loading, setloading] = useState(false);
 
   useEffect(() => {
     (async () => {
       setloading(true);
-      dispatch(await getCoinsActionCreator());
-      // setloading(false);
+      dispatch(await getCoinsActionCreator("inr", 10000, 1));
+      setloading(false);
     })();
   }, [dispatch]);
 
