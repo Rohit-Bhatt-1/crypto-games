@@ -1,5 +1,5 @@
 import { default as axios } from "axios";
-import { GET_ALL_COINS, GET_ALL_COINS_ERROR } from "../actionTypes";
+import { GET_ALL_COINS, GET_ALL_COINS_ERROR } from "../../actionTypes";
 
 const getCoinsActionCreator = async (
   currency = "inr",

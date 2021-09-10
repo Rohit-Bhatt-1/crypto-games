@@ -1,6 +1,7 @@
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import firebase from "firebase/compat/app";
 import { accessToken } from "../../../utils/constants";
+import { LOGGED_IN, LOGIN_ERROR } from "../../actionTypes";
 
 firebase.initializeApp({
   apiKey: process.env.REACT_APP_API_KEY,
@@ -16,11 +17,18 @@ const provider = new GoogleAuthProvider();
 provider.addScope("https://www.googleapis.com/auth/contacts.readonly");
 const auth = getAuth();
 
-const authActionCreator = async () => {
-  const data = await signInWithPopup(auth, provider);
-  const user = data.user;
-  localStorage.setItem(accessToken, user.accessToken);
-  return { type: "HELLO" };
+export const authActionCreator = async () => {
+  try {
+    const data = await signInWithPopup(auth, provider);
+    const user = data.user;
+    localStorage.setItem(accessToken, user.accessToken);
+    return { type: LOGGED_IN, payload: true };
+  } catch (error) {
+    return { type: LOGIN_ERROR, error: error };
+  }
 };
 
-export default authActionCreator;
+export const logout = () => {
+  localStorage.clear();
+  return { type: LOGGED_IN, payload: false };
+};

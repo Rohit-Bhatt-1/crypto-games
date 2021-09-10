@@ -1,8 +1,9 @@
 import React from "react";
-import { accessToken } from "../../utils/constants";
+import { useSelector } from "react-redux";
 
 function IfGuest({ children }) {
-  if (localStorage.getItem(accessToken) === null) return children;
+  const loggedIn = useSelector((store) => store.authReducer);
+  if (!loggedIn) return children;
   return <></>;
 }
 

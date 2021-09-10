@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useHistory } from "react-router";
 import { Nav, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
@@ -6,26 +6,23 @@ import IfLoggedIn from "../IfLoggedIn/IfLoggedIn";
 import IfGuest from "../IfGuest/IfGuest";
 import { useDispatch } from "react-redux";
 import "./Header.css";
-import authActionCreator from "../../redux/actionCreator/authActionCreator/authActionCreator";
+import {
+  authActionCreator,
+  logout,
+} from "../../redux/actionCreator/authActionCreator/authActionCreator";
 
 export default function Header() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
-
   const login = () => {
-    if (!isLoggedIn) {
-      (async () => {
-        dispatch(await authActionCreator());
-        setIsLoggedIn(true);
-        history.push("/test");
-      })();
-    }
+    (async () => {
+      dispatch(await authActionCreator());
+      history.push("/test");
+    })();
   };
 
-  const logout = () => {
-    localStorage.clear();
-    setIsLoggedIn(false);
+  const dispatchLogout = () => {
+    dispatch(logout());
   };
 
   return (
@@ -38,7 +35,7 @@ export default function Header() {
         <Nav className="me-auto"></Nav>
         <Nav>
           <IfLoggedIn>
-            <Nav.Link className="nav-link" onClick={logout}>
+            <Nav.Link className="nav-link" onClick={dispatchLogout}>
               Logout
             </Nav.Link>
           </IfLoggedIn>
