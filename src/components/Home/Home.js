@@ -7,7 +7,6 @@ import ScrollButton from "../ScrollButton/ScrollButton";
 
 function Home() {
   const coins = useSelector((store) => store.getCoinsReducer);
-  console.log("coins", coins);
   const dispatch = useDispatch();
   const [loading, setloading] = useState(false);
 

@@ -1,7 +1,4 @@
-import {
-  GET_ALL_COINS,
-  GET_ALL_COINS_ERROR,
-} from "../actionCreator/actionTypes";
+import { GET_ALL_COINS, GET_ALL_COINS_ERROR } from "../actionTypes";
 
 const getCoinsReducer = (state = [], action = {}) => {
   switch (action.type) {
