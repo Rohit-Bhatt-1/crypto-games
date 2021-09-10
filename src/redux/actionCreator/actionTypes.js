@@ -1,0 +1,2 @@
+export const GET_ALL_COINS = "GET_ALL_COINS";
+export const GET_ALL_COINS_ERROR = "GET_ALL_COINS_ERROR";

@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import tempReducer from "./tempReducer";
+import getCoinsReducer from "./getCoinsReducer";
 
 export default combineReducers({
-    tempReducer
+  getCoinsReducer,
 });
